@@ -9,7 +9,7 @@ addEventListener('fetch',event=>{
  */
 
 //Element Handler Class to change the html tags
-class ElementHandler {
+class ElementHandler {                                        //ElementHandler to modify the API data 
   element(element) {
     
 
