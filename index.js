@@ -12,7 +12,7 @@ addEventListener('fetch',event=>{
 class ElementHandler {
   element(element) {
     
-    //console.log(`Incoming element: ${element.tagName}`)
+
     if(element.tagName=="title"){
       element.setInnerContent("Cloudflare Online Assessment");
     }
@@ -40,19 +40,16 @@ async function getUrls(request){
   let urls= await fetch('https://cfw-takehome.developers.workers.dev/api/variants');
   let url_data= await urls.json()
   let random_number=Math.round(Math.random());
-  //console.log(random_number);
+
   
   let urls_1= await fetch(url_data["variants"][random_number]);
   let url_data_1= await urls_1.text();
   let abc=await myHtmlParser(url_data_1);
-  //console.log(abc instanceof Resp);
+ 
   abc.headers.set('content-type','text/html');
   return abc;
   
-  // //console.log(url_data_1);
-  // return new Response(url_data_1,{
-  //   headers: { 'content-type': 'text/html' },
-  // });
+  
 }
 
 //HTML Parser Function
