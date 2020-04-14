@@ -37,12 +37,14 @@ class ElementHandler {
 }
 // Function to fetch the URL'S
 async function getUrls(request){
+  
   let cookieChecked= await checkCookies(request);
-  if(cookieChecked==null){
+  if(cookieChecked==null){                                      // Check for cookies if not presented call random
+  
     let urls= await fetch('https://cfw-takehome.developers.workers.dev/api/variants');
     let url_data= await urls.json()
     let random_number=Math.round(Math.random());
-    console.log("inside if");
+    //console.log("inside if");
     
     let urls_1= await fetch(url_data["variants"][random_number]);
     let url_data_1= await urls_1.text();
@@ -50,28 +52,28 @@ async function getUrls(request){
     let cookieName= "last_cookie"+"="+url_data["variants"][random_number];
     //abc.headers.delete('Set-Cookie');
     //console.log("cookies deleted");
-    abc.headers.set('Set-Cookie',cookieName);
+    abc.headers.set('Set-Cookie',cookieName);                 //and save the cookies
+  
   }
+
   else{
+
     console.log("inside else");
     let cookie_url = cookieChecked;
-    console.log(cookie_url+"hek");
-    let urls_1= await fetch(cookie_url);
+    //console.log(cookie_url+"hek");
+    let urls_1= await fetch(cookie_url);                    //or else load the cookie url 
     let url_data_1= await urls_1.text();
     var abc=await myHtmlParser(url_data_1);
-  }
-
-
   
+  }
  
   abc.headers.set('content-type','text/html');
   return abc;
-  
-  
+    
 }
 
 
-async function checkCookies(request){
+async function checkCookies(request){                   //function to check if cookies exist
   let cookie= request.headers.get('Cookie');
   url=null;
   if(cookie){
