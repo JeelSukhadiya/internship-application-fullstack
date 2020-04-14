@@ -1,6 +1,7 @@
-name = "{{project-name}}"
+name = "jeel_oa"
 type = "javascript"
-account_id = ""
+account_id = "aabe2200135aa0af17862e2324065d83"
 workers_dev = true
-route = ""
-zone_id = ""
+[env.production]
+route = "jsukhad.me"
+zone_id = "40d68ec08955b3c003bc44b0f5002b28"
